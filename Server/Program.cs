@@ -21,7 +21,7 @@ builder.Services.AddAuthentication(options =>
     options.Audience = builder.Configuration["Auth0:Audience"];
     options.TokenValidationParameters = new TokenValidationParameters
     {
-        NameClaimType = ClaimTypes.NameIdentifier,
+        NameClaimType = ClaimTypes.NameIdentifier
     };
 });
 
@@ -43,7 +43,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers();
+app.MapControllers().RequireAuthorization();
 app.MapFallbackToFile("index.html");
 
 app.Run();
